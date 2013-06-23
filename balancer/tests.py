@@ -39,6 +39,10 @@ class BalancerTestCase(TestCase):
         settings.MASTER_DATABASE = self.original_master
         settings.DATABASE_POOL = self.original_pool
 
+    def assertIn(self, test_value, expected_set):
+        msg = "%s did not occur in %s" % (test_value, expected_set)
+        self.assert_(test_value in expected_set, msg)
+
 
 class RandomRouterTestCase(BalancerTestCase):
 
