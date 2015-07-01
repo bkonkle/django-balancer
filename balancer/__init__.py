@@ -23,13 +23,17 @@ TEST_DATABASES = {
     },
     'other': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'TEST_NAME': 'other_db',
-        'TEST_MIRROR': 'default',
+        'TEST': {
+            'NAME': 'other_db',
+            'MIRROR': 'default',
+        },
         'SUPPORTS_TRANSACTIONS': False,
     },
     'utility': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'TEST_NAME': 'utility_db',
+        'TEST': {
+            'NAME': 'utility_db',
+        },
         'SUPPORTS_TRANSACTIONS': False,
     }
 }

@@ -25,7 +25,7 @@ class MasterSlaveMixin(object):
             return True
         return None
 
-    def allow_syncdb(self, db, model):
+    def allow_migrate(self, db, model):
         """Only allow syncdb on the master"""
         return db == self.master
 
@@ -36,13 +36,13 @@ class PinningMixin(object):
     setting for a pre-determined period of time after a write.  Requires the
     PinningRouterMiddleware.
     """
-    
+
     def db_for_read(self, model, **hints):
         from django.conf import settings
         if pinning.thread_is_pinned():
             return settings.MASTER_DATABASE
         return super(PinningMixin, self).db_for_read(model, **hints)
-    
+
     def db_for_write(self, model, **hints):
         pinning.set_db_write()
         pinning.pin_thread()
