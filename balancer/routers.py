@@ -24,7 +24,7 @@ class BasePoolRouter(object):
             return True
         return None
 
-    def allow_syncdb(self, db, model):
+    def allow_migrate(self, db, model):
         """Explicitly put all models on all databases"""
         return True
 

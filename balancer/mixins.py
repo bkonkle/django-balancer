@@ -25,7 +25,7 @@ class MasterSlaveMixin(object):
             return True
         return None
 
-    def allow_syncdb(self, db, model):
+    def allow_migrate(self, db, model):
         """Only allow syncdb on the master"""
         return db == self.master
 
