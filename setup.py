@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from codecs import open as codecs_open
 import os
 import sys
 
@@ -11,17 +12,15 @@ except ImportError:
 
 VERSION = __import__('balancer').__version__
 
-try:
-    long_description = open('README.rst', 'rt').read()
-except IOError:
-    long_description = ''
+with codecs_open(('README.rst'), encoding='utf-8') as f:
+    long_description = '\n' + f.read()
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
-description = 'A set of tools for using Django\'s multi-db feature to balance '\
-              'database requests'
+description = 'A set of tools for using Django\'s multi-db feature to balance' \
+              ' database requests'
 
 setup(
     name='django-balancer',
@@ -50,5 +49,6 @@ setup(
         'Topic :: Database',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English'
-    ]
+    ],
+    keywords='database pooling mysql db balancer'
 )
